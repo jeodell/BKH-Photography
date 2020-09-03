@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="container dark-grey-text mb-5">
+  <div class="row">
+    <div class="col-md-8 mb-4 text-center">
+      <img src="{{ item.img.url }}" class=" img-fluid" style="max-height: 500px;" alt="">
+    </div>
+    <div class="col-md-4 mb-4 pl-5 d-flex img-info-bkh">
+      <div>
+        <p class="lead font-weight-bold">{{ item.title }}</p>
+        <p class="lead">
+          <span id="item_price">${{ item.get_price_display }}</span>
+        </p>
+        <form id="img_size_form" name="img_size_form" action="/shop/add-to-cart/{{ item.slug }}/" method="POST">
+          {% csrf_token %}
+          <select id="img_size" name="img_size" class="browser-default custom-select" required
+            onchange="{{ item.update_price }}">
+            <option selected disabled value=''>Image Size</option>
+            {% for abbr, size in form.fields.img_size.choices %}
+            <option value="{{abbr}}">{{ size }}
+            </option>
+            {% endfor %}
+          </select>
+          <div>
+            <button class="btn btn-bkh btn-lg mt-4 ml-0" type="submit">
+              Add To Cart
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  PRICE_CHOICES = {
+    "5R": '15',
+    "8R": '20',
+    "11R": '30',
+    "12S": '25',
+    "16R": '40',
+    "16S": '35',
+    "18R": '50',
+    "20R": '65',
+  }
+  let select = document.getElementById('img_size')
+  let form = document.getElementById('img_size_form')
+  let itemPrice = document.getElementById('item_price')
+
+  select.addEventListener("change", () => {
+    form.action = '/shop/add-to-cart/{{ item.slug }}/' + select.value + '/'
+    const value = select.value
+    itemPrice.innerText = '$' + PRICE_CHOICES[value]
+  })
+</script>
+
+{% endblock %}

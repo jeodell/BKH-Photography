@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container mt-5">
+  <h2 class="my-5 text-center">Cart</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order_item in order_items %}
+        <tr>
+          <td class="table-font">{{ order_item.item.title }}</td>
+          <td class="table-font">{{ order_item.get_img_size_display }}</td>
+          <td class="table-font">${{ order_item.price|floatformat:2 }}</td>
+          <td>
+            <a href="{% url 'remove-single-item-from-cart' order_item.item.slug %}">
+              <i class="fas fa-minus mr-2"></i>
+            </a>
+            <span class="table-font">
+              {{ order_item.quantity }}
+            </span>
+            <a href="{% url 'add-to-cart' slug=order_item.item.slug img_size=order_item.img_size %}">
+              <i class="fas fa-plus ml-2"></i>
+            </a>
+          </td>
+          <td class="table-font">
+            ${{ order_item.get_total_item_price|floatformat:2 }}
+            <a href="{% url 'remove-from-cart' order_item.item.slug %}">
+              <i class="fas fa-trash float-right"></i>
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr class="table-font">
+          <td colspan="5">Your Cart Is Empty</td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <a href="{% url 'shop' %}" class="btn btn-bkh float-right mt-2">Continue Shopping</a>
+          </td>
+        </tr>
+        {% endfor %}
+        {% if order.get_total %}
+        <tr>
+          <td colspan="4"><strong>Total</strong></td>
+          <td class="table-font">${{ order.get_total|floatformat:2 }}</td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <a class="btn btn-bkh float-right ml-2 mt-2" href="{% url 'checkout' %}">Proceed To Checkout</a>
+            <a class="btn btn-bkh float-right mt-2" href="{% url 'shop' %}">Continue Shopping</a>
+          </td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

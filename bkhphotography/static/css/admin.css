@@ -1,0 +1,84 @@
+:root {
+  --bkh-blue: #416c88;
+}
+
+#header {
+  padding: 20px 40px;
+  background-color: var(--bkh-blue);
+  color: #fff;
+}
+
+#branding h1 {
+  color: #fff;
+}
+
+a:link, a:visited {
+  color: var(--bkh-blue);
+}
+
+a.section:link, a.section:visited {
+  color: var(--bkh-blue);
+}
+
+div.selector-chosen h2 {
+  background: #c8dce6;
+  color: var(--bkh-blue);
+}
+
+div.breadcrumbs {
+  background-color: #c8dce6;
+  color: #fff;
+}
+
+div.breadcrumbs a {
+  color: var(--bkh-blue);
+}
+
+div.breadcrumbs a:hover {
+  color: #fff;
+}
+
+#user-tools a:hover {
+  color: #c8dce6;
+}
+
+.module h2, .module caption, .inline-group h2 {
+  background-color: #c8dce6;
+}
+
+.module h2, .module caption, .inline-group a {
+  color: var(--bkh-blue);
+}
+
+div.submit-row input {
+  background-color: #c8dce6;
+}
+
+.submit-row input {
+  background-color: #c8dce6;
+  color: var(--bkh-blue);
+}
+
+.submit-row input:hover {
+  background-color: var(--bkh-blue);
+  color: #fff;
+}
+
+.submit-row input.default {
+  background-color: #c8dce6;
+  color: var(--bkh-blue);
+}
+
+.button.default:active, input[type="submit"].default:active, .button.default:focus, input[type="submit"].default:focus, .button.default:hover, input[type="submit"].default:hover {
+  background: var(--bkh-blue);
+  color: #fff;
+}
+
+.object-tools a:focus, .object-tools a:hover {
+  background-color: var(--bkh-blue);
+  color: #fff;
+}
+
+caption {
+  background-color: var(--bkh-blue);
+}

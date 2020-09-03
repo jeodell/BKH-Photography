@@ -1,0 +1,47 @@
+{% load static %}
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap Tooltips -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'mdbpro/js/mdb.min.js' %}"></script>
+<!-- Lightbox -->
+<script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    const messageBar = document.querySelector('.messages-bar')
+
+    setTimeout(function () {
+      try {
+        messageBar.style.display = "none";
+      } catch (err) {}
+    }, 3000)
+    $('.third-button').on('click', function () {
+
+      $('.animated-icon3').toggleClass('open');
+    });
+
+    // object-fit polyfill run
+    objectFitImages();
+
+    /* init Jarallax */
+    jarallax(document.querySelectorAll('.jarallax'), {
+      speed: 0,
+      disableParallax: /iPhone|iPod|Android/,
+    });
+
+    jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+      keepImg: true,
+    });
+  })
+
+  lightbox.option({
+    'resizeDuration': 500,
+    'maxHeight': 800,
+    'alwaysShowNavOnTouchDevices': true
+  })
+</script>

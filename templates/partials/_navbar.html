@@ -1,0 +1,64 @@
+{% load static %}
+{% load cart_template_tags %}
+
+<nav class="d-none d-lg-flex navbar navbar-expand-lg navbar-light bg-white py-5">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav col-md-4 justify-content-start flex-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'albums' %}">Albums</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'shop' %}">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'homepage' %}#contact">Contact</a>
+        </li>
+      </ul>
+      <a class="navbar-brand text-center col-md-4 title-text-bkh" href="{% url 'homepage' %}">BKH Photography</a>
+      <ul class="navbar-nav col-md-4 justify-content-end">
+        <li class="nav-item">
+          <a href="{% url 'cart' %}" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            <span class="badge badge-bkh z-depth-1 ml-1">{{ request|cart_item_count }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<nav class="d-lg-none navbar navbar-expand-lg navbar-light bg-white py-5">
+  <div class="container">
+    <a class="navbar-brand title-text-bkh" href="{% url 'homepage' %}">BKH Photography</a>
+    <button class="navbar-toggler third-button" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon3"><span></span><span></span><span></span></div>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'albums' %}">Albums</a>
+        </li>
+        <li class=" nav-item">
+          <a class="nav-link" href="{% url 'shop' %}">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'homepage' %}#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'cart' %}" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            <span class="badge badge-bkh z-depth-1 ml-1">{{ request|cart_item_count }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

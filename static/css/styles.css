@@ -1,0 +1,167 @@
+:root {
+  --bkh-blue: #416c88;
+  --bkh-green: #355744;
+}
+
+* {
+  font-family: 'Cormorant';
+  font-size: 16px;
+}
+
+img {
+  pointer-events: none;
+}
+
+.pswp__img {
+  max-height: 100% !important;
+  width: auto !important;
+}
+
+.img-lightbox-bkh {
+  max-height: none !important;
+}
+
+.home-img-container-bkh {
+  height: 100vh;
+}
+
+.home-img-bkh {
+  max-height: none !important;
+  height: auto;
+}
+
+.navbar {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.nav-link {
+  font-size: 1.25rem;
+}
+
+.clearfix {
+  font-size: 1.25rem;
+}
+
+.home-grid-bkh {
+  padding: 0 !important;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
+}
+
+.table-font {
+  font-size: 1.1rem;
+}
+
+.btn-bkh {
+  color: #fff !important;
+  background-color: var(--bkh-blue) !important;
+}
+
+.btn-bkh:hover {
+  color: #fff !important;
+  background-color: rgba(65, 108, 136, 0.8) !important;
+}
+
+.badge-bkh {
+  color: #fff;
+  background-color: var(--bkh-blue) !important;
+}
+
+.title-text-bkh {
+  font-size: 2.5rem;
+}
+
+.image-text-bkh {
+  font-size: 2rem;
+}
+
+.lead {
+  font-size: 2rem !important;
+}
+
+.price-text-bkh {
+  font-size: 1.5rem;
+}
+
+#item_price {
+  font-size: 1.5rem;
+}
+
+#img_size {
+  font-size: 1rem;
+}
+
+.img-info-bkh {
+  align-items: center;
+}
+
+.custom-select {
+  width: auto;
+}
+
+.album-hover {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.album-hover-title {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 2.5rem !important;
+}
+
+#album-photos {
+  line-height: 0;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 0px;
+  -moz-column-count: 3;
+  -moz-column-gap: 0px;
+  column-count: 3;
+  column-gap: 0px;
+}
+
+#album-photos img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.pagination .page-item.active .page-link {
+  color: #fff;
+  background-color: var(--bkh-blue);
+}
+
+.pagination .page-item.active .page-link:hover {
+  color: #fff;
+  background-color: var(--bkh-blue);
+}
+
+@media screen and (max-width: 767px) {
+  .card-img-top {
+    height: auto;
+  }
+  .img-info-bkh {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .table-font {
+    font-size: 0.8rem !important;
+  }
+  i {
+    font-size: 12px !important;
+  }
+}
+
+/* Footer color for sake of consistency with Navbar */
+
+.page-footer {
+  background-color: var(--bkh-blue);
+}

@@ -1,0 +1,104 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="BKH Photography by Brianna Haferman">
+  <meta property=”og:type” content="website" />
+  <meta property=”og:title” content="BKH Photography" />
+  <meta property=”og:description”
+    content="Brianna Haferman, a North Carolina based photographer specializing in landscape, portrait, and adventure photography." />
+  <meta property=”og:image” content="{% static 'img/daisies.jpg' %}" />
+  <meta property=”og:url” content="{% url 'homepage' %}" />
+  <meta property=”og:site_name” content="briannahaferman.com" />
+  <meta name=”twitter:title” content="BKH Photography" ”>
+  <meta name=”twitter:description”
+    content="Brianna Haferman, a North Carolina based photographer specializing in landscape, portrait, and adventure photography.">
+  <meta name=”twitter:image” content="{% static 'img/daisies.jpg' %}">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Cormorant Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!-- MDB Free -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="{% static 'mdbpro/css/mdb.min.css' %}">
+  <!-- Lightbox -->
+  <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+  <!-- Stripe CSS -->
+  <link rel="stylesheet" href="{% static 'css/stripe.css' %}">
+  <!--Import Custom CSS-->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <!-- Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript">
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+
+    function uuidv4() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0,
+          v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    let device = getCookie('device')
+
+    if (device == null || device == undefined) {
+      device = uuidv4()
+    }
+    /** add secure and HttpOnly */
+    document.cookie = 'device=' + device + ';domain=;path=/;samesite=lax;'
+  </script>
+  <title>BKH Photography</title>
+</head>
+
+<body>
+  <!-- Navbar -->
+  {% include 'partials/_navbar.html' %}
+  <!-- Messages -->
+  <div class="text-center mt-4">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show messages-bar" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  <!-- Main Content -->
+  {% block content %} {% endblock %}
+  <!-- Footer -->
+  {% include 'partials/_footer.html' %}
+  <!-- Scripts -->
+  {% include 'partials/_scripts.html' %}
+  {% block extra_scripts %} {% endblock extra_scripts %}
+
+</body>
+
+</html>

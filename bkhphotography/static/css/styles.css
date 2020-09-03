@@ -1,0 +1,255 @@
+:root {
+  --bkh-blue: #416c88;
+  --bkh-green: #355744;
+}
+
+* {
+  font-family: 'Cormorant';
+  font-size: 16px;
+}
+
+img {
+  pointer-events: none;
+}
+
+.pswp__img {
+  max-height: 100% !important;
+  width: auto !important;
+}
+
+.img-lightbox-bkh {
+  max-height: none !important;
+}
+
+.navbar {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.nav-link {
+  font-size: 1.25rem;
+}
+
+.animated-icon3 {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  margin: 0px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+.animated-icon3 span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+.animated-icon3 span {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.animated-icon3 span:nth-child(1) {
+  top: 0px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon3 span:nth-child(2) {
+  top: 10px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon3 span:nth-child(3) {
+  top: 20px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon3.open span:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 0px;
+  left: 8px;
+}
+
+.animated-icon3.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.animated-icon3.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 21px;
+  left: 8px;
+}
+
+.clearfix {
+  font-size: 1.25rem;
+}
+
+.home-grid-bkh {
+  padding: 0 !important;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
+}
+
+.table-font {
+  font-size: 1.1rem;
+}
+
+.btn-bkh {
+  color: #fff !important;
+  background-color: var(--bkh-blue) !important;
+}
+
+.btn-bkh:hover {
+  color: #fff !important;
+  background-color: rgba(65, 108, 136, 0.8) !important;
+}
+
+.badge-bkh {
+  color: #fff;
+  background-color: var(--bkh-blue) !important;
+}
+
+.title-text-bkh {
+  font-size: 2.25rem;
+}
+
+.image-text-bkh {
+  font-size: 2rem;
+}
+
+.lead {
+  font-size: 2rem !important;
+}
+
+.price-text-bkh {
+  font-size: 1.5rem;
+}
+
+#item_price {
+  font-size: 2rem;
+}
+
+#img_size {
+  font-size: 1rem;
+}
+
+.img-info-bkh {
+  align-items: center;
+}
+
+.custom-select {
+  width: auto;
+}
+
+.album-hover {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.album-hover-title {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 2.5rem !important;
+}
+
+#album-photos {
+  line-height: 0;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 0px;
+  -moz-column-count: 3;
+  -moz-column-gap: 0px;
+  column-count: 3;
+  column-gap: 0px;
+}
+
+#album-photos img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.pagination .page-item.active .page-link {
+  color: #fff;
+  background-color: var(--bkh-blue);
+}
+
+.pagination .page-item.active .page-link:hover {
+  color: #fff;
+  background-color: var(--bkh-blue);
+}
+
+@media screen and (max-width: 767px) {
+  .card-img-top {
+    height: auto;
+  }
+  .img-info-bkh {
+    text-align: center;
+    justify-content: center;
+  }
+  #album-photos {
+    line-height: 0;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0px;
+    -moz-column-count: 1;
+    -moz-column-gap: 0px;
+    column-count: 1;
+    column-gap: 0px;
+  }
+  #img_size {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .table-font {
+    font-size: 0.8rem !important;
+  }
+  i {
+    font-size: 12px !important;
+  }
+}
+
+/* Footer color for sake of consistency with Navbar */
+
+.page-footer {
+  background-color: var(--bkh-blue);
+}
