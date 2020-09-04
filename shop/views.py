@@ -202,12 +202,12 @@ class PaymentView(View):
             print(stripeCustomer)
 
             # Create a charge
-            # charge = stripe.Charge.create(
-            #     customer=customer,
-            #     amount=amount * 100,
-            #     currency='usd',
-            #     source=stripeCustomer.default_source
-            # )
+            charge = stripe.Charge.create(
+                customer=customer,
+                amount=amount * 100,
+                currency='usd',
+                source=stripeCustomer.default_source
+            )
             payment = Payment(user=customer, amount=order.get_total())
             # payment.stripe_charge_id = charge.id
             payment.save()

@@ -1,7 +1,4 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-
-<!-- ADD COVER PHOTO OR CAROUSEL HERE -->
-
 <div>
   <div class="view jarallax" style="height: 100vh;">
     <img class="jarallax-img" src="{% static 'img/mountain_man.jpg' %}" alt="parallax image of mountain man">
@@ -60,7 +57,7 @@
         <form action="." method="POST">
           {% csrf_token %}
           {{ form }}
-          <div class="d-flex justify-content-center mt-2">
+          <div class="d-flex justify-content-center mt-2 mb-4">
             <input type="submit" value="Send" class="btn btn-bkh" />
           </div>
         </form>

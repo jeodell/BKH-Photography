@@ -1,19 +1,20 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="BKH Photography by Brianna Haferman">
+  <meta name="description" content="Brianna Haferman, a North Carolina based photographer specializing in landscape, portrait, and adventure photography.">
   <meta property=”og:type” content="website" />
-  <meta property=”og:title” content="BKH Photography" />
+  <meta property=”og:title” content="Brianna Haferman" />
   <meta property=”og:description”
     content="Brianna Haferman, a North Carolina based photographer specializing in landscape, portrait, and adventure photography." />
   <meta property=”og:image” content="{% static 'img/daisies.jpg' %}" />
   <meta property=”og:url” content="{% url 'homepage' %}" />
   <meta property=”og:site_name” content="briannahaferman.com" />
-  <meta name=”twitter:title” content="BKH Photography" ”>
+  <meta name=”twitter:title” content="Brianna Haferman" ”>
   <meta name=”twitter:description”
     content="Brianna Haferman, a North Carolina based photographer specializing in landscape, portrait, and adventure photography.">
   <meta name=”twitter:image” content="{% static 'img/daisies.jpg' %}">
@@ -69,10 +70,9 @@
     if (device == null || device == undefined) {
       device = uuidv4()
     }
-    /** add secure and HttpOnly */
-    document.cookie = 'device=' + device + ';domain=;path=/;samesite=lax;'
+    document.cookie = 'device=' + device + ';domain=;path=/;samesite=lax;secure;'
   </script>
-  <title>BKH Photography</title>
+  <title>Brianna Haferman</title>
 </head>
 
 <body>
