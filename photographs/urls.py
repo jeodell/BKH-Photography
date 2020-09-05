@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path('', views.HomepageView.as_view(), name="homepage"),
+    path('about/', views.AboutView.as_view(), name='about'),
     path('albums/', views.AlbumsView.as_view(), name='albums'),
     path('albums/<album>/', views.get_album_view, name='album'),
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Photograph, Album
 from .forms import ContactForm
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, TemplateView
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
@@ -9,11 +9,11 @@ from django.contrib import messages
 
 class HomepageView(View):
     def get(self, request, *args, **kwargs):
-        photographs = Photograph.objects.all()
+        albums = Album.objects.all()
         form = ContactForm()
 
         context = {
-            'photographs': photographs,
+            'albums': albums,
             'form': form
         }
 
@@ -54,3 +54,7 @@ def get_album_view(request, album):
 
         return render(request, 'photographs/album.html', context)
     return redirect('homepage')
+
+
+class AboutView(TemplateView):
+    template_name = 'photographs/about.html'

@@ -1,52 +1,33 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <div>
-  <div class="view jarallax" style="height: 100vh;">
+  <div class="view jarallax wow fadeIn" style="height: 75vh;">
     <img class="jarallax-img" src="{% static 'img/mountain_man.jpg' %}" alt="parallax image of mountain man">
   </div>
 
   <!-- Photography Types -->
-  <section class="container scrollspy" id="services">
-    <div class="row align-items-center">
-      <div class="container col-sm-12 col-lg-6">
-        <h2>Adventure</h2>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis
-          iure, vero quod earum modi, accusantium repellendus adipisci quos
-          tempora voluptas recusandae incidunt nobis. Accusantium consectetur
-          molestias nihil! Ducimus, magnam id?
-        </p>
+  <section class="container scrollspy" id="albums">
+    {% for album in albums %}
+    {% if forloop.first %}<div class="row">{% endif %}
+      <div class="col-md-6 mt-5">
+        <div class="card card-cascade wider reverse">
+          <div class="view view-cascade overlay">
+            <img class="card-img-top" src="{{ album.cover.url }}" alt="Card image cap">
+            <a href="{{ album.get_absolute_url }}">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body card-body-cascade text-center">
+            <a href="{{ album.get_absolute_url }}" class="stretched-link">
+              <h3 class="card-title black-text">{{ album.title }}</h3>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="col col-sm-12 col-lg-6 push-l1 home-grid-bkh">
-        <img src="{% static 'img/mountain_man.jpg' %}" alt="adventurous image" class="img-fluid" />
-      </div>
+      {% if forloop.counter|divisibleby:2 %}
     </div>
-    <div class="row align-items-center">
-      <div class="col-sm-12 col-lg-6 home-grid-bkh">
-        <img src="{% static 'img/mountain_man.jpg' %}" alt="portrait image" class="img-fluid" />
-      </div>
-      <div class="col-sm-12 col-lg-6 push-l1">
-        <h2>Portraits</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-          euismod semper eleifend. Phasellus sed tortor in nisi laoreet imperdiet
-          a.
-        </p>
-      </div>
-    </div>
-    <div class="row align-items-center">
-      <div class="col-sm-12 col-lg-6">
-        <h2>Fine Art</h2>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis
-          iure, vero quod earum modi, accusantium repellendus adipisci quos
-          tempora voluptas recusandae incidunt nobis. Accusantium consectetur
-          molestias nihil! Ducimus, magnam id?
-        </p>
-      </div>
-      <div class="col-sm-12 col-lg-6 push-l1 home-grid-bkh">
-        <img src="{% static 'img/mountain_man.jpg' %}" alt="fine art image" class="img-fluid" />
-      </div>
-    </div>
+    <div class="row">{% endif %}
+      {% if forloop.last %}</div>{% endif %}
+    {% endfor %}
   </section>
 
   <!-- Contact Form -->

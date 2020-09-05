@@ -150,6 +150,23 @@ img {
 
 .title-text-bkh {
   font-size: 2.25rem;
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.h1-bkh {
+  font-size: 2rem;
+}
+
+.title-text-bkh:hover {
+  color: #333;
+}
+
+.title-desc-bkh {
+  font-size: 1.2rem;
 }
 
 .image-text-bkh {
