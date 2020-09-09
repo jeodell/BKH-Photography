@@ -57,4 +57,11 @@ def get_album_view(request, album):
 
 
 class AboutView(TemplateView):
-    template_name = 'photographs/about.html'
+    def get(self, request, *args, **kwargs):
+        form = ContactForm()
+
+        context = {
+            'form': form
+        }
+
+        return render(request, "photographs/about.html", context)
