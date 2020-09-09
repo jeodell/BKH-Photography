@@ -186,30 +186,35 @@ class PaymentView(View):
             return redirect('checkout')
 
     def post(self, request, *args, **kwargs):
-        customer = Customer.objects.get(
-            device=request.COOKIES['device'], ordered=False)
-        order = Order.objects.get(
-            user=customer, ordered=False)
-        amount = int(order.get_total())
-
         try:
+            customer = Customer.objects.get(
+                device=request.COOKIES['device'], ordered=False)
+            order = Order.objects.get(
+                user=customer, ordered=False)
+            amount = int(order.get_total())
+            publish_key = settings.STRIPE_PUBLISHABLE_KEY
+            token = request.POST['stripeToken']
+
             # Create a customer
             stripeCustomer = stripe.Customer.create(
                 name=customer.username,
                 email=customer.email,
-                source=request.POST['stripeToken']
+                source=token
             )
-            print(stripeCustomer)
 
             # Create a charge
+            # Cons - Only US and Canada and does not handle bank requests
             charge = stripe.Charge.create(
-                customer=customer,
+                customer=stripeCustomer,
                 amount=amount * 100,
                 currency='usd',
                 source=stripeCustomer.default_source
             )
+
+            # Create a payment (Django)
             payment = Payment(user=customer, amount=order.get_total())
-            # payment.stripe_charge_id = charge.id
+            payment.stripe_charge_id = charge.id
+            payment.order_ref_code = create_ref_code()
             payment.save()
 
             order_items = order.items.filter(ordered=False)
@@ -222,7 +227,7 @@ class PaymentView(View):
 
             order.ordered = True
             order.payment = payment
-            order.ref_code = create_ref_code()
+            order.ref_code = payment.order_ref_code
             order.save()
 
             subject_customer = f'Thank you for your order from BKH Photography!'
@@ -240,6 +245,7 @@ class PaymentView(View):
             messages.success(self.request, 'Your order has been placed.')
             return redirect('/')
         except:
+            messages.error(request, 'An error occured during payment.')
             return redirect('/shop/checkout')
 
 

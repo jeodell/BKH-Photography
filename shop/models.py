@@ -154,6 +154,7 @@ class Address(models.Model):
 class Payment(models.Model):
     user = models.ForeignKey(Customer,
                              on_delete=models.CASCADE, blank=True, null=True)
+    order_ref_code = models.CharField(max_length=20, blank=True, null=True)
     stripe_charge_id = models.CharField(max_length=100)
     amount = models.FloatField()
     timestamp = models.DateTimeField(auto_now_add=True)

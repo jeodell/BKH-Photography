@@ -61,9 +61,10 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'stripe_charge_id', 'amount', 'timestamp')
+    list_display = ('user', 'order_ref_code',
+                    'stripe_charge_id', 'amount', 'timestamp')
     list_display_links = ('user', 'stripe_charge_id')
-    search_fields = ('user', 'stripe_charge_id')
+    search_fields = ('user', 'order_ref_code', 'stripe_charge_id')
     list_per_page = 25
 
 
