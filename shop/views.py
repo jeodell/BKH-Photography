@@ -230,6 +230,11 @@ class PaymentView(View):
             order.ref_code = payment.order_ref_code
             order.save()
 
+        except:
+            messages.info(request, 'An error occured during payment.')
+            return redirect('/')
+
+        try:
             subject_customer = f'Thank you for your order from Brianna Haferman Photography!'
             subject_owner = f'New order received from {customer.username}'
             message_customer = f"You ordered some images from me?! Well that was super nice.\n\nI will get that together as soon as I can (it might take a couple days). As soon as it's shipped, you'll hear from me again.\nThank you, you kind person!\n\nIf you have any questions or concerns, email me!\nBrianna Haferman\n\nOrder Details\nOrder reference code: {order.ref_code}\nShipping Address: {order.shipping_address}\nTotal: ${order.get_total():.2f}"
@@ -244,8 +249,9 @@ class PaymentView(View):
             messages.success(self.request, 'Your order has been placed.')
             return redirect('/')
         except:
-            messages.error(request, 'An error occured during payment.')
-            return redirect('/shop/checkout')
+            messages.info(
+                request, 'Your order processed but we could not send your confirmation email.')
+            return redirect('/')
 
 
 def add_to_cart(request, slug, img_size):
