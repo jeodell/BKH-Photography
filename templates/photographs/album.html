@@ -10,26 +10,11 @@
     {% for photo in photographs %}
     <div class="col mb-4">
       <a href="{{photo.img.url}}" data-lightbox='album-images' class="stretched-link">
-        <img src="{{ photo.img.url }}" class="img-fluid" alt="album-image">
+        <img src="{{ photo.img.url }}" class="img-fluid" alt="album image">
       </a>
     </div>
     {% endfor %}
   </div>
-
-  <!-- OPTION 2 (remove id) -->
-  <!-- <div class="row row-cols-1 row-cols-md-2">
-    {% for photo in photographs %}
-    <div class="col mb-4">
-      <div class="h-100">
-        <div class="view">
-          <a href="{{ photo.img.url }}" data-lightbox="home-images">
-            <img src="{{ photo.img.url }}" class="card-img-top" alt="album-image">
-          </a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div> -->
 </section>
 
 {% endblock %}
