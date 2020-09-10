@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
-<div class="container">
-  <section class="text-center mb-4">
+<div class="container my-5">
+  <section class="text-center">
     <!-- <h1 class="mb-5 h1-bkh text-dark">Shop</h1> -->
     <div class="row row-cols-1 row-cols-md-2">
       {% for item in page_obj %}
@@ -13,14 +13,13 @@
               <div class="mask flex-center flex-column rgba-white-strong">
                 <h3>
                   <a href="{{ item.get_absolute_url }}"
-                    class="font-weight-bold dark-grey-text image-text-bkh">{{ item.title }}
+                    class="font-weight-bold dark-grey-text image-text-bkh stretched-link">{{ item.title }}
                   </a>
                 </h3>
                 <h4 class="font-weight-bold dark-grey-text price-text-bkh">
                   Starting at ${{ item.get_price_as_float|floatformat:0 }}
                 </h4>
                 <div>
-                  <!-- Can do stretched-link here as well -->
                   <a href="{{ item.get_absolute_url }}">
                     <button class="btn btn-bkh">View</button>
                   </a>
@@ -36,7 +35,7 @@
 
   <!--Pagination-->
   {% if page_obj.has_other_pages %}
-  <nav class="d-flex justify-content-center wow fadeIn">
+  <nav class="d-flex justify-content-center wow fadeIn mt-5">
     <ul class="pagination">
 
       {% if page_obj.has_previous %}

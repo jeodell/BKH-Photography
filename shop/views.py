@@ -230,17 +230,16 @@ class PaymentView(View):
             order.ref_code = payment.order_ref_code
             order.save()
 
-            subject_customer = f'Thank you for your order from BKH Photography!'
+            subject_customer = f'Thank you for your order from Brianna Haferman Photography!'
             subject_owner = f'New order received from {customer.username}'
-            message_customer = f'Thank you for your order! Your order reference code is {order.ref_code}.'
+            message_customer = f"You ordered some images from me?! Well that was super nice.\n\nI will get that together as soon as I can (it might take a couple days). As soon as it's shipped, you'll hear from me again.\nThank you, you kind person!\n\nIf you have any questions or concerns, email me!\nBrianna Haferman\n\nOrder Details\nOrder reference code: {order.ref_code}\nShipping Address: {order.shipping_address}\nTotal: ${order.get_total():.2f}"
             message_owner = f'Go to /admin and see the order details under Orders'
 
-            # EmailMessage has more options
             send_mail(subject_customer, message_customer,
                       settings.EMAIL_HOST_USER, [customer.email])
 
             send_mail(subject_owner, message_owner,
-                      settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER])
+                      settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER, settings.JBUG_EMAIL])
 
             messages.success(self.request, 'Your order has been placed.')
             return redirect('/')

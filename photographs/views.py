@@ -25,11 +25,11 @@ class HomepageView(View):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
-            recipient = [settings.EMAIL_HOST_USER]
+            recipients = [settings.EMAIL_HOST_USER, settings.JBUG_EMAIL]
             subject = f'New message from { name }'
 
             try:
-                send_mail(subject, message, email, recipient)
+                send_mail(subject, message, email, recipients)
                 messages.success(request, 'Your message has been sent.')
             except:
                 messages.warning(request, 'Your message could not be sent.')
@@ -37,11 +37,6 @@ class HomepageView(View):
         else:
             messages.warning(request, 'Your form was not valid.')
             return redirect('homepage')
-
-
-class AlbumsView(ListView):
-    model = Album
-    template_name = 'photographs/albums.html'
 
 
 def get_album_view(request, album):
@@ -65,3 +60,22 @@ class AboutView(TemplateView):
         }
 
         return render(request, "photographs/about.html", context)
+
+    def post(self, request, *args, **kwargs):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            recipients = [settings.EMAIL_HOST_USER, settings.JBUG_EMAIL]
+            subject = f'New message from { name }'
+
+            try:
+                send_mail(subject, message, email, recipients)
+                messages.success(request, 'Your message has been sent.')
+            except:
+                messages.warning(request, 'Your message could not be sent.')
+            return redirect('homepage')
+        else:
+            messages.warning(request, 'Your form was not valid.')
+            return redirect('homepage')

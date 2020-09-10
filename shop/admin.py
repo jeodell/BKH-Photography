@@ -6,8 +6,8 @@ from django.conf import settings
 
 def order_shipped(mdoeladmin, request, queryset):
     queryset.update(shipped=True, delivered=False)
-    subject = 'Your order has been shipped!'
-    message = f'Order {queryset[0].ref_code} has been shipped! The order is being sent to {queryset[0].shipping_address}.\nPlease let us know if this information is incorrect.'
+    subject = 'Your order from Brianna Haferman Photography has been shipped!'
+    message = f'We did it! Your prints are on their way!\n\nOrder {queryset[0].ref_code} is being sent to {queryset[0].shipping_address}.\nPlease let us know if any of this information needs to be updated.\n\nThank you again for your support!\nBrianna Haferman'
     customer_email = queryset[0].user.email
     try:
         send_mail(subject, message, settings.EMAIL_HOST_USER, [customer_email])

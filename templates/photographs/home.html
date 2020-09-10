@@ -1,31 +1,11 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <div>
   <div class="view jarallax wow fadeIn" style="height: 75vh;">
-    <img class="jarallax-img" src="{% static 'img/mountain_man.jpg' %}" alt="parallax image of mountain man">
+    <img class="jarallax-img" src="{% static 'img/mountains.jpg' %}" alt="parallax image of mountains">
   </div>
 
-  <!-- Photography Types -->
-  <!-- <section class="container scrollspy" id="albums">
-    {% for album in albums %}
-    {% if forloop.first %}<div class="row">{% endif %}
-      <div class="col-md-6 mt-5">
-        <div class="pb-5 px-5 bg-light-pink">
-          <div class="card-body pb-5">
-            <a href="{{ album.get_absolute_url }}" class="stretched-link">
-              <h2 class="card-title black-text">{{ album.title }}</h2>
-            </a>
-          </div>
-          <img class="card-img-top" src="{{ album.cover.url }}" alt="Card image cap">
-        </div>
-      </div>
-      {% if forloop.counter|divisibleby:2 %}
-    </div>
-    <div class="row">{% endif %}
-      {% if forloop.last %}</div>{% endif %}
-    {% endfor %}
-  </section> -->
-
-  <section class="scrollspy mx-4 mt-5" id="albums">
+  <!-- Albums -->
+  <section class="mx-4 mt-5" id="albums" data-aos="fade-in">
     <div id="albums-home" class="row">
       {% for album in albums %}
       <div class="col-sm-6 col-md-3 mt-5">
@@ -43,7 +23,7 @@
   </section>
 
   <!-- Contact Form -->
-  <section class="container scrollspy mt-5" id="contact">
+  <section class="container mt-5" id="contact" data-aos="fade-in">
     <div class="row">
       <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
         <h2 class="text-center">Contact Me</h2>
@@ -65,7 +45,7 @@
     var albums = document.getElementById(id);
     var DIVs = albums.getElementsByClassName('albums-home');
 
-    var colors = ['#ecfde6', '#e3f1e2', '#cfd9ce', '#f1f4fb'];
+    var colors = ['#dbe9f1', '#dceae9', '#e6eee5', '#e9ecf1'];
 
     var colorIndex = 0;
     for (var i = 0; i < DIVs.length; i++) {

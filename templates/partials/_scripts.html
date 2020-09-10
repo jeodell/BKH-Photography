@@ -11,8 +11,13 @@
 <script type="text/javascript" src="{% static 'mdbpro/js/mdb.min.js' %}"></script>
 <!-- Lightbox -->
 <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
+<!-- Animate on Scroll -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script type="text/javascript">
   new WOW().init();
+  AOS.init({
+    duration: 800, // values from 0 to 3000, with step 50ms
+  });
   $(document).ready(function () {
     const messageBar = document.querySelector('.messages-bar')
 
@@ -31,7 +36,7 @@
 
     /* init Jarallax */
     jarallax(document.querySelectorAll('.jarallax'), {
-      speed: 0,
+      speed: 0.25,
       disableParallax: /iPhone|iPod|Android/,
     });
 
