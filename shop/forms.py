@@ -46,33 +46,6 @@ class CheckoutForm(forms.Form):
         'placeholder': 'Zipcode',
         'class': 'form-control'
     }))
-    billing_first_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'placeholder': 'First Name',
-        'class': 'form-control',
-    }))
-    billing_last_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'placeholder': 'Last Name',
-        'class': 'form-control',
-    }))
-    billing_street = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'placeholder': 'Address',
-        'class': 'form-control',
-    }))
-    billing_apartment = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'placeholder': 'Apartment (optional)',
-        'class': 'form-control',
-    }))
-    billing_state = forms.CharField(required=False, widget=USStateSelect(attrs={
-        'class': 'custom-select d-block w-100',
-    }))
-    billing_zipcode = forms.IntegerField(required=False, widget=forms.TextInput(attrs={
-        'placeholder': 'Zipcode',
-        'class': 'form-control',
-    }))
-    same_billing_address = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={
-        'class': 'custom-control-input',
-        'id': 'same_billing_address'
-    }))
 
 
 class ImgSizeForm(forms.Form):

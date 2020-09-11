@@ -3,11 +3,6 @@ from django.conf import settings
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 
-ADDRESS_CHOICES = (
-    ('B', 'Billing'),
-    ('S', 'Shipping')
-)
-
 IMG_SIZE_CHOICES = (
     ('5R', '5x7'),
     ('8R', '8x10'),
@@ -112,8 +107,6 @@ class Order(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
-    billing_address = models.ForeignKey(
-        'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
     shipping_address = models.ForeignKey(
         'Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
     payment = models.ForeignKey(
@@ -141,8 +134,6 @@ class Address(models.Model):
     country = models.CharField(
         max_length=100, default='United States')
     zipcode = models.IntegerField()
-    same_billing_address = models.BooleanField()
-    address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
 
     def __str__(self):
         return f"{self.street} {self.state}, {self.country} {self.zipcode}"

@@ -37,42 +37,7 @@
               {{ form.shipping_zipcode }}
             </div>
           </div>
-          <div class="custom-control custom-checkbox mt-2">
-            {{ form.same_billing_address }}
-            <label class="custom-control-label" for="same_billing_address">Billing address is the same as my shipping
-              address</label>
-          </div>
           <hr>
-          <div class="hideable-billing-form">
-            <h3 class="text-center mt-4">Billing Address</h3>
-            <div class="row">
-              <div class="col-md-6 mb-2">
-                <div class="md-form">
-                  {{ form.billing_first_name }}
-                </div>
-              </div>
-              <div class="col-md-6 mb-2">
-                <div class="md-form">
-                  {{ form.billing_last_name }}
-                </div>
-              </div>
-            </div>
-            <div class="md-form mb-5">
-              {{ form.billing_street}}
-            </div>
-            <div class="md-form mb-5">
-              {{ form.billing_apartment }}
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                {{ form.billing_state }}
-              </div>
-              <div class="col-md-6 mb-4">
-                {{ form.billing_zipcode }}
-              </div>
-            </div>
-            <hr>
-          </div>
           <button class="btn btn-bkh btn-lg btn-block" type="submit">Continue To
             Payment Method</button>
         </form>
@@ -102,20 +67,5 @@
     </div>
   </div>
 </div>
-
-{% block extra_scripts %}
-<script>
-  var hideable_billing_form = $('.hideable-billing-form')
-  var same_billing_address = document.querySelector('#same_billing_address')
-
-  same_billing_address.addEventListener('change', function () {
-    if (this.checked) {
-      hideable_billing_form.hide()
-    } else {
-      hideable_billing_form.show()
-    }
-  })
-</script>
-{% endblock extra_scripts %}
 
 {% endblock %}

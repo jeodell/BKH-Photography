@@ -35,7 +35,7 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'ref_code', 'billing_address',
+    list_display = ('user', 'ref_code',
                     'shipping_address', 'ordered', 'shipped', 'delivered')
     list_display_links = ('user',)
     list_filter = ('ordered', 'shipped', 'delivered')
@@ -46,10 +46,10 @@ class OrderAdmin(admin.ModelAdmin):
 
 class AddressAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'street', 'apartment', 'state',
-                    'country', 'zipcode', 'same_billing_address', 'address_type')
+                    'country', 'zipcode')
     list_display_links = ('first_name',
                           'last_name', 'street')
-    search_fields = ('first_name', 'last_name', 'address')
+    search_fields = ('first_name', 'last_name')
     list_per_page = 25
 
 

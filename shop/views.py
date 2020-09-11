@@ -100,25 +100,6 @@ class CheckoutView(View):
                     'shipping_apartment')
                 shipping_state = form.cleaned_data.get('shipping_state')
                 shipping_zipcode = form.cleaned_data.get('shipping_zipcode')
-                same_billing_address = form.cleaned_data.get(
-                    'same_billing_address')
-                if same_billing_address:
-                    billing_first_name = shipping_first_name
-                    billing_last_name = shipping_last_name
-                    billing_street = shipping_street
-                    billing_apartment = shipping_apartment
-                    billing_state = shipping_state
-                    billing_zipcode = shipping_zipcode
-                else:
-                    billing_first_name = form.cleaned_data.get(
-                        'billing_first_name')
-                    billing_last_name = form.cleaned_data.get(
-                        'billing_last_name')
-                    billing_street = form.cleaned_data.get('billing_street')
-                    billing_apartment = form.cleaned_data.get(
-                        'billing_apartment')
-                    billing_state = form.cleaned_data.get('billing_state')
-                    billing_zipcode = form.cleaned_data.get('billing_zipcode')
                 shipping_address, created_shipping = Address.objects.get_or_create(
                     first_name=shipping_first_name,
                     last_name=shipping_last_name,
@@ -126,23 +107,9 @@ class CheckoutView(View):
                     apartment=shipping_apartment,
                     state=shipping_state,
                     zipcode=shipping_zipcode,
-                    same_billing_address=same_billing_address,
-                    address_type='S'
-                )
-                billing_address, created_billing = Address.objects.get_or_create(
-                    first_name=billing_first_name,
-                    last_name=billing_last_name,
-                    street=billing_street,
-                    apartment=billing_apartment,
-                    state=billing_state,
-                    zipcode=billing_zipcode,
-                    same_billing_address=same_billing_address,
-                    address_type='B'
                 )
                 if created_shipping:
                     shipping_address.save()
-                if created_billing:
-                    billing_address.save()
                 if not customer.username:
                     customer.username = f"{shipping_first_name} {shipping_last_name}"
                     customer.email = email
@@ -155,7 +122,6 @@ class CheckoutView(View):
                     new_customer.save()
                     order.user = new_customer
                 order.shipping_address = shipping_address
-                order.billing_address = billing_address
                 order.save()
 
                 return redirect('payment')
@@ -175,15 +141,11 @@ class PaymentView(View):
         order_items = OrderItem.objects.filter(
             user=customer, ordered=False
         )
-        if order.billing_address:
-            context = {
-                'order': order,
-                'order_items': order_items
-            }
-            return render(self.request, 'shop/payment.html', context)
-        else:
-            messages.warning(self.request, 'You must add a billing address')
-            return redirect('checkout')
+        context = {
+            'order': order,
+            'order_items': order_items
+        }
+        return render(self.request, 'shop/payment.html', context)
 
     def post(self, request, *args, **kwargs):
         try:
