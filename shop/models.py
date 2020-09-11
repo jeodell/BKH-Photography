@@ -96,7 +96,7 @@ class OrderItem(models.Model):
         return self.quantity * self.price
 
     class Meta:
-        ordering = ['-user']
+        ordering = ['-item']
 
 
 class Order(models.Model):
