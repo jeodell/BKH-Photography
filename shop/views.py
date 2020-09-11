@@ -60,7 +60,7 @@ class CartView(View):
             return render(self.request, 'shop/cart.html', context)
         except ObjectDoesNotExist:
             messages.warning(self.request, 'No active order found.')
-            return redirect('shop/payment.html')
+            return redirect('shop')
 
 
 class CheckoutView(View):
@@ -78,6 +78,10 @@ class CheckoutView(View):
                 'order_items': order_items,
                 'form': form,
             }
+            if order == None:
+                messages.warning(
+                    self.request, 'No active order found.')
+                return redirect('shop')
             return render(self.request, 'shop/checkout.html', context)
         except ObjectDoesNotExist:
             messages.warning(self.request, 'No active order found.')
@@ -134,23 +138,26 @@ class CheckoutView(View):
 
 class PaymentView(View):
     def get(self, request, *args, **kwargs):
-        customer = Customer.objects.get(
-            device=request.COOKIES['device'], ordered=False)
-        order = Order.objects.get(
-            user=customer, ordered=False)
-        order_items = OrderItem.objects.filter(
-            user=customer, ordered=False
-        )
-        context = {
-            'order': order,
-            'order_items': order_items
-        }
-        if customer.username == '':
-            form = ImgSizeForm()
-            messages.info(
-                self.request, 'Shipping information cannot be blank.')
-            return redirect('/shop/checkout')
-        return render(self.request, 'shop/payment.html', context)
+        try:
+            customer = Customer.objects.get(
+                device=request.COOKIES['device'], ordered=False)
+            order = Order.objects.get(
+                user=customer, ordered=False)
+            order_items = OrderItem.objects.filter(
+                user=customer, ordered=False
+            )
+            context = {
+                'order': order,
+                'order_items': order_items
+            }
+            if customer.username == '':
+                messages.info(
+                    self.request, 'Shipping information cannot be blank.')
+                return redirect('checkout')
+            return render(self.request, 'shop/payment.html', context)
+        except ObjectDoesNotExist:
+            messages.warning(self.request, 'No active order found.')
+            return redirect('shop')
 
     def post(self, request, *args, **kwargs):
         try:
