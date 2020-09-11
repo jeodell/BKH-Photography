@@ -60,7 +60,7 @@ class CartView(View):
             return render(self.request, 'shop/cart.html', context)
         except ObjectDoesNotExist:
             messages.warning(self.request, 'No active order found.')
-            return redirect('shop')
+            return redirect('shop/payment.html')
 
 
 class CheckoutView(View):
@@ -145,6 +145,11 @@ class PaymentView(View):
             'order': order,
             'order_items': order_items
         }
+        if customer.username == '':
+            form = ImgSizeForm()
+            messages.info(
+                self.request, 'Shipping information cannot be blank.')
+            return redirect('/shop/checkout')
         return render(self.request, 'shop/payment.html', context)
 
     def post(self, request, *args, **kwargs):
@@ -194,7 +199,7 @@ class PaymentView(View):
 
         except:
             messages.info(request, 'An error occured during payment.')
-            return redirect('/')
+            return redirect('/shop/payment')
 
         try:
             subject_customer = f'Thank you for your order from Brianna Haferman Photography!'
