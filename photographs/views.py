@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
-from .models import Photograph, Album
-from .forms import ContactForm
-from django.views.generic import View, ListView, TemplateView
-from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.shortcuts import redirect, render
+from django.views.generic import ListView, TemplateView, View
+
+from .forms import ContactForm
+from .models import Album, Photograph
 
 
 class HomepageView(View):
@@ -31,7 +32,7 @@ class HomepageView(View):
             try:
                 send_mail(subject, message, email, recipients)
                 messages.success(request, 'Your message has been sent.')
-            except:
+            except Exception:
                 messages.warning(request, 'Your message could not be sent.')
             return redirect('homepage')
         else:
@@ -73,7 +74,7 @@ class AboutView(TemplateView):
             try:
                 send_mail(subject, message, email, recipients)
                 messages.success(request, 'Your message has been sent.')
-            except:
+            except Exception:
                 messages.warning(request, 'Your message could not be sent.')
             return redirect('homepage')
         else:
