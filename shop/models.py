@@ -1,7 +1,6 @@
-from django.db import models
-from django.conf import settings
-from django.shortcuts import reverse
 from django.contrib.auth.models import User
+from django.db import models
+from django.shortcuts import reverse
 
 IMG_SIZE_CHOICES = (
     ('5R', '5x7'),

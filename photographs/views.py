@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from django.views.generic import ListView, TemplateView, View
+from django.views.generic import TemplateView, View
 
 from .forms import ContactForm
 from .models import Album, Photograph

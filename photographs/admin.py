@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Photograph
-from .models import Album
+
+from .models import Album, Photograph
 
 
 class PhotographAdmin(admin.ModelAdmin):

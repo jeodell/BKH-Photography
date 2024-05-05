@@ -1,5 +1,6 @@
 from django import template
-from ..models import Order, OrderItem, Customer
+
+from ..models import Customer, OrderItem
 
 register = template.Library()
 
@@ -14,5 +15,5 @@ def cart_item_count(request):
         for order_item in order_items:
             count += order_item.quantity
         return count
-    except:
+    except Exception:
         return 0

@@ -1,7 +1,8 @@
-from django.contrib import admin
-from .models import Item, OrderItem, Order, Payment, Address, Customer
-from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import admin
+from django.core.mail import send_mail
+
+from .models import Address, Customer, Item, Order, OrderItem, Payment
 
 
 def order_shipped(mdoeladmin, request, queryset):
@@ -11,7 +12,7 @@ def order_shipped(mdoeladmin, request, queryset):
     customer_email = queryset[0].user.email
     try:
         send_mail(subject, message, settings.EMAIL_HOST_USER, [customer_email])
-    except:
+    except Exception:
         print('Could not send email to customer.')
 
 

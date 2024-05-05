@@ -1,20 +1,18 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.utils import timezone
-from django.contrib import messages
-from django.core.paginator import Paginator
-from django.core.exceptions import ObjectDoesNotExist
-from django.views.generic import ListView, DetailView, View
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from django.core.mail import send_mail
-from django.conf import settings
-from .models import Item, Order, OrderItem, Address, Payment, Customer, IMG_SIZE_CHOICES, PRICE_CHOICES
-from .forms import CheckoutForm, ImgSizeForm
-import stripe
 import random
 import string
-import json
+
+import stripe
+from django.conf import settings
+from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
+from django.views.generic import ListView, View
+
+from .forms import CheckoutForm, ImgSizeForm
+from .models import (PRICE_CHOICES, Address, Customer, Item, Order, OrderItem,
+                     Payment)
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
