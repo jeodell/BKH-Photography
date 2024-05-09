@@ -1,15 +1,11 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
-<script>
-
-</script>
-
-<section id='album-photos' class="container text-center mb-4">
+<section id="album-photos" class="container text-center mb-4">
   <div>
     {% for photo in photographs %}
     <div class="col mb-4">
-      <a href="{{photo.img.url}}" data-lightbox='album-images' class="stretched-link">
-        <img src="{{ photo.img.url }}" class="img-fluid" alt="album image">
+      <a href="{{photo.img.url}}" data-lightbox="album-images" class="stretched-link">
+        <img src="{{ photo.img.url }}" class="img-fluid" alt="album image" />
       </a>
     </div>
     {% endfor %}

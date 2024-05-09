@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <div>
-  <div class="view jarallax wow fadeIn" style="height: 75vh;">
-    <img class="jarallax-img" src="{% static 'img/mountains.jpg' %}" alt="parallax image of mountains">
+  <div class="view jarallax wow fadeIn" style="height: 75vh">
+    <img class="jarallax-img" src="{% static 'img/mountains.jpg' %}" alt="parallax image of mountains" />
   </div>
 
   <!-- Albums -->
@@ -15,7 +15,7 @@
               <h2 class="card-title black-text">{{ album.title }}</h2>
             </a>
           </div>
-          <img class="card-img-top" src="{{ album.cover.url }}" alt="album cover image">
+          <img class="card-img-top" src="{{ album.cover.url }}" alt="album cover image" />
         </div>
       </div>
       {% endfor %}
@@ -28,8 +28,7 @@
       <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
         <h2 class="text-center">Contact Me</h2>
         <form action="." method="POST">
-          {% csrf_token %}
-          {{ form }}
+          {% csrf_token %} {{ form }}
           <div class="d-flex justify-content-center mt-2 mb-4">
             <input type="submit" value="Send" class="btn btn-bkh" />
           </div>
@@ -41,21 +40,19 @@
 
 <script>
   function bgColor(id) {
+    var albums = document.getElementById(id)
+    var DIVs = albums.getElementsByClassName('albums-home')
 
-    var albums = document.getElementById(id);
-    var DIVs = albums.getElementsByClassName('albums-home');
+    var colors = ['#dbe9f1', '#dceae9', '#e6eee5', '#e9ecf1']
 
-    var colors = ['#dbe9f1', '#dceae9', '#e6eee5', '#e9ecf1'];
-
-    var colorIndex = 0;
+    var colorIndex = 0
     for (var i = 0; i < DIVs.length; i++) {
-
-      DIVs[i].setAttribute('style', 'background-color: ' + colors[colorIndex]);
-      colorIndex = (colorIndex + 1) % colors.length;
+      DIVs[i].setAttribute('style', 'background-color: ' + colors[colorIndex])
+      colorIndex = (colorIndex + 1) % colors.length
     }
   }
 
-  bgColor('albums-home');
+  bgColor('albums-home')
 </script>
 
 {% endblock %}
